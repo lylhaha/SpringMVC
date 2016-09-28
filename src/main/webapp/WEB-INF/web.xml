@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         id="WebApp_ID" version="2.5">
+    <display-name>Archetype Created Web Application</display-name>
+
+    <!--logback配置-->
+    <listener>
+        <listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>logbackConfigLocation</param-name>
+        <param-value>classpath:logback.xml</param-value>
+    </context-param>
+
+
+    <servlet>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring-servlet.xml</param-value>
+        </init-param>
+        <!--启动时就加在servlet.xml-->
+        <load-on-startup>1</load-on-startup>
+
+
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+
+    <!--配置log4j-->
+    <!--<context-param>-->
+        <!--<param-name>webAppRootKey</param-name>-->
+        <!--<param-value>SpringMVCExercise.root</param-value>-->
+    <!--</context-param>-->
+    <!--<context-param>-->
+        <!--<param-name>log4jConfigLocation</param-name>-->
+        <!--<param-value>/WEB-INF/log4j.properties</param-value>-->
+    <!--</context-param>-->
+  <!--<context-param>-->
+      <!--<param-name>log4jRefreshInterval</param-name>-->
+      <!--<param-value>60000</param-value>-->
+  <!--</context-param>-->
+
+    <!--<listener>-->
+        <!--<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>-->
+    <!--</listener>-->
+</web-app>
