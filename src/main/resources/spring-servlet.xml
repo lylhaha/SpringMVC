@@ -1,29 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-       <!--设置映射-->
-       <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-           <!--定义拦截器-->
-              <property name="interceptors">
-                     <list>
-                            <ref bean="NotLeaveWord"/>
-                     </list>
-              </property>
+       <!--开启注解功能-->
+    <mvc:annotation-driven />
+    <!--扫描包-->
+     <context:component-scan base-package="com.lyl.controller"/>
 
-              <property name="mappings">
-                 <props>
-                        <prop key="helloWord">helloWordController</prop>
-                        <prop key="FormController">formController</prop>
-                        <prop key="formMultiController">formMuliController</prop>
-                        <prop key="loginController">LoginController</prop>
-                 </props>
-           </property>
-              
-       </bean>
-       <!--定义视图-->
+    <!--对于dispatcher“/”下静态资源被禁止放访问的处理方法-->
+    <!--另一种：-->
+    <!--<mvc:resources mapping="" location=""/>-->
+    <mvc:default-servlet-handler />
+
        <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
               <!--Jsp/Servlet视图-->
               <property name="viewClass">
@@ -31,7 +23,7 @@
               </property>
               <!--jsp存放的目录-->
               <property name="prefix">
-                     <value>/WEB-INF/</value>
+                     <value>/WEB-INF/jsp/</value>
               </property>
               <!--jsp文件后缀-->
               <property name="suffix">
@@ -49,50 +41,7 @@
               </property>
 
        </bean>
-
-
-
-
-
-       <!--定义Controller-->
-       <bean id="helloWordController" class="com.lyl.controller.HelloWorldController">
-              <property name="helloWorld">
-                     <value>HelloWorld</value>
-              </property>
-              <property name="viewPage">
-                     <value>index</value>
-              </property>
-       </bean>
-       <bean id="formController" class="com.lyl.controller.FormController">
-              <property name="commandClass">
-                     <value>com.lyl.vo.HelloWorld</value>
-              </property>
-              <property name="viewPage">
-                     <value>formShow</value>
-              </property>
-       </bean>
-       <bean id="formMuliController" class="com.lyl.controller.FormMutiController">
-              <property name="methodNameResolver">
-                     <ref bean="pareMethodResolver"/>
-              </property>
-              <property name="viewPage">
-                     <value>formShow</value>
-              </property>
-       </bean>
-
-
-      <bean id="LoginController" class="com.lyl.controller.LoginController">
-             <property name="methodNameResolver">
-                    <ref bean="pareMethodResolver"/>
-             </property>
-      </bean>
-       <bean id="pareMethodResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
-              <property name="paramName">
-                     <value>method</value>
-              </property>
-
-       </bean>
-       <bean id="NotLeaveWord" class="com.lyl.interceptor.NotLeaveWord"/>
+       <!--<bean id="NotLeaveWord" class="com.lyl.interceptor.NotLeaveWord"/>-->
 
 
 
