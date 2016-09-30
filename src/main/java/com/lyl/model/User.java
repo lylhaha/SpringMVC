@@ -1,4 +1,4 @@
-package com.lyl.vo;
+package com.lyl.model;
 
 /**
  * Created by user on 2016/9/27.
