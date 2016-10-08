@@ -20,7 +20,10 @@
             classpath:spring-service.xml
         </param-value>
     </context-param>
-
+    <!--添加requestContextListener -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
 
     <servlet>
         <servlet-name>dispatcherServlet</servlet-name>

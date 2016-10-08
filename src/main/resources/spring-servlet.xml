@@ -11,6 +11,7 @@
     <!--扫描包-->
      <context:component-scan base-package="com.lyl.controller"/>
 
+
     <!--对于dispatcher“/”下静态资源被禁止放访问的处理方法-->
     <!--另一种：-->
     <!--<mvc:resources mapping="" location=""/>-->
