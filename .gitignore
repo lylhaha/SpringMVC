@@ -1,0 +1,21 @@
+*.iml
+*.class
+.idea
+**/build/
+**/bin/
+**/debug/
+**/target/
+**/test-output/
+
+
+
+
+# Folders to ignore
+.svn
+.CVS
+.idea
+node_modules
+
+# Package Files #
+*/target/*.jar
+*.war
